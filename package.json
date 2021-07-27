@@ -1,0 +1,35 @@
+{
+  "name": "nebular-jalali-moment",
+  "version": "0.9.0",
+  "description": "jalali-moment for nebular",
+  "author": {
+    "name": "AmirHossein Abdollahzadeh Ghalejoghi",
+    "email": "abdollahzadeh.amirhossein@gmail.com",
+    "url": "http://amirhosseinabdollahzadeh.ir"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abdollahzadehghalejoghi/nebular-jalali-moment.git"
+  },
+  "bugs": {
+    "url": "https://github.com/abdollahzadehghalejoghi/nebular-jalali-moment/issues"
+  },
+  "homepage": "https://github.com/abdollahzadehghalejoghi/nebular-jalali-moment#readme",
+  "keywords": [
+    "angular",
+    "typescript",
+    "ng2-admin",
+    "ngx-admin",
+    "theme",
+    "nebular",
+    "jalali",
+    "moment",
+    "jalali-moment"
+  ],
+  "peerDependencies": {
+    "@nebular/theme": "8.0.0",
+    "jalali-moment": "^3.3.10"
+  },
+  "sideEffects": false
+}
