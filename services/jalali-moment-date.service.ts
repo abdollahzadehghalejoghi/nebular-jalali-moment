@@ -9,7 +9,6 @@ import { default as _rollupMoment, LongDateFormatKey, Moment } from 'jalali-mome
 
 const moment = _rollupMoment || _moment;
 
-
 @Injectable()
 export class JalaliMomentDateService extends NbDateService<Moment> {
   protected localeData: {
@@ -68,19 +67,24 @@ export class JalaliMomentDateService extends NbDateService<Moment> {
   }
 
   clone(date: Moment): Moment {
+    if (!date) {
+      return null;
+    }
 
     let dateMoment;
-    if (!date) {
-      dateMoment = null;
-    } else if (!date.clone) {
+    if (!date.clone) {
       dateMoment = moment(date);
+      if (this.getYear(dateMoment) < 1000)  {
+        dateMoment = moment(date, this.localeData.defaultFormat).locale('fa');
+      }
     } else {
       dateMoment = date.clone();
     }
-    // if (m && this.locale || true) {
-    //     m.locale(this.locale || 'fa');
+    // if (dateMoment && this.locale || true) {
+    //     dateMoment.locale(this.locale || 'fa');
     // }
-    dateMoment.locale('fa', { useGregorianParser: true });
+
+    dateMoment?.locale('fa', { useGregorianParser: true });
     return dateMoment;
   }
 
@@ -89,9 +93,11 @@ export class JalaliMomentDateService extends NbDateService<Moment> {
   }
 
   compareDates(date1: Moment, date2: Moment): number {
-    return this.getYear(date1) - this.getYear(date2) ||
+    return (
+      this.getYear(date1) - this.getYear(date2) ||
       this.getMonth(date1) - this.getMonth(date2) ||
-      this.getDate(date1) - this.getDate(date2);
+      this.getDate(date1) - this.getDate(date2)
+    );
   }
 
   createDate(year: number, month: number, date: number): Moment {
@@ -131,23 +137,19 @@ export class JalaliMomentDateService extends NbDateService<Moment> {
   }
 
   getHours(date: Moment): number {
-    return date.hour();
-    return date.locale('fa').hour();
+    return this.clone(date).hour();
   }
 
   getMinutes(date: Moment): number {
-    return date.minute();
-    return date.locale('fa').minute();
+    return this.clone(date).minute();
   }
 
   getSeconds(date: Moment): number {
-    return date.second();
-    return date.locale('fa').second();
+    return this.clone(date).second();
   }
 
   getMilliseconds(date: Moment): number {
-    return date.milliseconds();
-    return date.locale('fa').milliseconds();
+    return this.clone(date).milliseconds();
   }
 
   getMonthEnd(date: Moment): Moment {
@@ -204,7 +206,6 @@ export class JalaliMomentDateService extends NbDateService<Moment> {
   }
 
   parse(date: string, format: string): Moment {
-
     // var date = '1400/11/22';
     const year = date.slice(0, 4) || moment().locale('fa').year();
     // console.log('year', year);
