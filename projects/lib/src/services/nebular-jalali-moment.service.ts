@@ -9,7 +9,7 @@ import { default as _rollupMoment, LongDateFormatKey, Moment } from 'jalali-mome
 
 const moment = _rollupMoment || _moment;
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class NebularJalaliMomentService extends NbDateService<Moment> {
   protected localeData!: {
     firstDayOfWeek: number,
@@ -204,6 +204,7 @@ export class NebularJalaliMomentService extends NbDateService<Moment> {
     return moment(date, format, true).isValid();
   }
 
+  //todo work with format
   parse(date: string, format: string): Moment {
     // var date = '1400/11/22';
     const year = date.slice(0, 4) || moment().locale('fa').year();
