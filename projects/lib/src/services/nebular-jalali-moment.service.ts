@@ -10,8 +10,8 @@ import { default as _rollupMoment, LongDateFormatKey, Moment } from 'jalali-mome
 const moment = _rollupMoment || _moment;
 
 @Injectable()
-export class JalaliMomentDateService extends NbDateService<Moment> {
-  protected localeData: {
+export class NebularJalaliMomentService extends NbDateService<Moment> {
+  protected localeData!: {
     firstDayOfWeek: number,
     defaultFormat: string,
     months: { [key: string]: string[] },
@@ -19,10 +19,9 @@ export class JalaliMomentDateService extends NbDateService<Moment> {
   };
 
   protected readonly TIME_ONLY_FORMAT_KEY: LongDateFormatKey = 'LT';
-  constructor(@Inject(LOCALE_ID) locale: string) {
+  constructor() {
     super();
     this.setLocale('fa');
-    // this.setLocale(locale);
   }
 
   setLocale(locale: string) {
@@ -68,13 +67,13 @@ export class JalaliMomentDateService extends NbDateService<Moment> {
 
   clone(date: Moment): Moment {
     if (!date) {
-      return null;
+      return null!;
     }
 
     let dateMoment;
     if (!date.clone) {
       dateMoment = moment(date);
-      if (this.getYear(dateMoment) < 1000)  {
+      if (this.getYear(dateMoment) < 1000) {
         dateMoment = moment(date, this.localeData.defaultFormat).locale('fa');
       }
     } else {
@@ -84,7 +83,7 @@ export class JalaliMomentDateService extends NbDateService<Moment> {
     //     dateMoment.locale(this.locale || 'fa');
     // }
 
-    dateMoment?.locale('fa', { useGregorianParser: true });
+    dateMoment?.locale('fa', { useGregorianParser : true });
     return dateMoment;
   }
 
