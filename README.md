@@ -8,6 +8,10 @@ nebular-jalali-moment is the **jalali**  provider of  [Datepicker Nebular](https
  1. `npm install nebular-jalali-moment --save`.  
  2. import `JalaliMomentDateModule` from this package.
 
+## Demo
+Run `ng serve demo` to serve the project.   
+Watch online click [Demo](https://abdollahzadehghalejoghi.github.io/nebular-jalali-moment/).
+
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.

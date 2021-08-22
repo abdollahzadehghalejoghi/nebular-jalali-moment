@@ -1,0 +1,19 @@
+<nb-layout>
+  <nb-layout-header>
+    <div class="text-center">
+      Demo jalali provider of Datepicker Nebular Use nebular-jalali-moment
+      package
+    </div>
+  </nb-layout-header>
+  <nb-layout-column>
+    <label for="date" class="label">تاریخ</label>
+    <input
+      nbInput
+      [nbDatepicker]="datepicker"
+      id="date"
+      placeholder="انتخاب کنید"
+    />
+    <nb-datepicker #datepicker></nb-datepicker>
+  </nb-layout-column>
+  <nb-layout-footer></nb-layout-footer>
+</nb-layout>
